@@ -1,0 +1,65 @@
+.dash-box {
+    
+    width: 400px;
+    height: 500px;
+    position: absolute;
+    right: 40px;
+}
+
+.dash-container {
+    width: 400px;
+    height: 500px;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    transition: all 0.5s ease;
+    background-color: rgba(47, 47, 47, 0.881);
+
+    //full width select-container with blue background and text color white
+    .select-container {
+        width: 99%;
+        height: 40px;
+        background-color: #2f2f2f;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        border-bottom: 1px solid #2f2f2f;
+        border-top: 1px solid #2f2f2f;
+        border-left: 1px solid #2f2f2f;
+        border-right: 1px solid #2f2f2f;
+        border-radius: 5px;
+        margin: 10px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+            background-color: #3f3f3f;
+        }
+
+        .select {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
+
+.toggle {
+    width: 50px;
+    height: 50px;
+    background-color: #3f3f3f;
+    position: absolute;
+    left: -70px;
+}

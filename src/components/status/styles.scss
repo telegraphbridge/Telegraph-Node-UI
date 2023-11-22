@@ -1,0 +1,19 @@
+.status-container {
+    width: 99%;
+    height: 90%;
+    
+    color: rgb(92, 180, 243);
+    
+
+    // background-color: darkgray;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+    .status {
+        padding: 10px !important;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.83);
+        }
+    }
+}

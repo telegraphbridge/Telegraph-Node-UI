@@ -1,0 +1,15 @@
+.final-page-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .header {
+    font-size: 32px;
+    font-weight: bold;
+  }
+  
+  .checkmark-animation {
+    width: 100px;
+  }

@@ -1,0 +1,51 @@
+.transactions-container {
+    width: 99%;
+    height: 90%;
+    
+    color: rgb(92, 180, 243);
+    
+
+    // background-color: darkgray;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.transaction {
+    padding: 10px !important;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.83);
+    }
+
+    td {
+        padding: 10px !important;
+    }
+}
+
+.transaction-header {
+    padding: 10px !important;
+    background-color: rgba(0, 0, 0, 0.418);
+}
+
+// transaction-details should be hidden by default
+.transaction-details {
+    width: 99%;
+    height: 190px;
+    
+    color: rgb(92, 180, 243);
+    font-size: 12px;
+    display: none;
+
+    // background-color: darkgray;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    &.show {
+        display: block;
+    }
+
+    p {
+        padding: 3px !important;
+        border-bottom: 1px solid rgb(92, 180, 243);
+    }
+}
