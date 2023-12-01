@@ -11,7 +11,7 @@ const ValidatorForm = ({ handleCreateValidator }) => {
       {validatorQuestions.map(question => (
         <div key={question.id}>
           <label htmlFor={question.id}>{question.label}</label>
-          <input type={question.type} id={question.id} name={question.name} />
+          <input className="blockchain-input" type={question.type} id={question.id} name={question.name} />
         </div>
       ))}
       <button className="next-button" onClick={(e) => handleCreateValidator(e)}>Create</button>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import {
     getMyValidator, createValidator, getWallet,
-    getNetworks, checkIfSigner
+    getNetworks, createNetwork, checkIfSigner
 } from '../../api/api';
 
 import Page from './Page';
@@ -23,6 +23,7 @@ const OnboardingScreen = ({ onComplete }) => {
     const [showPrivateKey, setShowPrivateKey] = useState(false);
     const [wallet, setWallet] = useState(null);
     const [showSignerForm, setShowSignerForm] = useState(false);
+    const [networks, setNetworks] = useState([]); 
     const [pages, setPages] = useState([
         {
             title: 'Hi there!',
@@ -141,8 +142,8 @@ const OnboardingScreen = ({ onComplete }) => {
                     if (index === 2) {
                         return {
                             ...page,
-                            title: "Looks like you don't have a blockchain provider yet.",
-                            placeholder: "Provide the info below to create one."
+                            title: "Looks like you don't have your blockchain providers yet.",
+                            placeholder: "You'll need to add provider URLs for each chain."
                         };
                     }
                     return page;
@@ -272,6 +273,32 @@ const OnboardingScreen = ({ onComplete }) => {
         }
     };
 
+    const handleCreateNetwork = async (networks) => {
+
+        for (const network of networks) { 
+          const { chainname, chainid, contractaddress, EVMHttpURL, EVMWssURL } = network;
+          console.log('network', network);
+          const response = await createNetwork({
+            name: chainname,
+            chainid: parseInt(chainid),
+            contractaddress,
+            evmhttpurl: EVMHttpURL,
+            evmwssurl: EVMWssURL
+          });
+          console.log('response', response);
+      
+          if(!response) {  // if creation fails for a network, exit loop
+            alert('Network creation failed!');
+            break;
+          }
+      
+          // logic for showNetworkForm and canAdvance
+          // assuming they are some state variables of your component
+          setShowNetworkForm(networks.indexOf(network) !== networks.length - 1);
+          setCanAdvance(networks.indexOf(network) === networks.length - 1);
+        }
+      };
+
     const handleNext = () => {
         console.log(canAdvance, currentPage, pages.length - 1)
         if (!canAdvance) { return; }
@@ -310,7 +337,7 @@ const OnboardingScreen = ({ onComplete }) => {
 
                 {showValidatorForm && <ValidatorForm handleCreateValidator={handleCreateValidator} />}
 
-                {currentPage === 2 && showNetworkForm && <NetworkForm />}
+                {currentPage === 2 && showNetworkForm && <NetworkForm handleCreateNetwork={handleCreateNetwork} />}
 
                 {currentPage === 3 && wallet && <WalletInfo wallet={wallet} />}
 

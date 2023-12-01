@@ -25,6 +25,16 @@ export const createValidator = async (validator) => {
     }
 };
 
+export const createNetwork = async (network) => {
+    try {
+        const response = await axios.post(`${serverDomain}/network`, network);
+        return response.data;
+    } catch (error) {
+        console.error('Error creating network:', error);
+        return null;
+    }
+}
+
 export const getWallet = async () => {
     try {
         const response = await axios.get(`${serverDomain}/status`);
@@ -48,7 +58,7 @@ export const getNetworks = async () => {
 
 export const checkIfSigner = async () => {
     try {
-        const response = await axios.get(`${serverDomain}/wallet/signer`);
+        const response = await axios.get(`${serverDomain}/signer`);
         return response.data;
     } catch (error) {
         console.error('Error checking if signer:', error);
